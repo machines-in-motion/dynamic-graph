@@ -68,6 +68,13 @@ inline void DefaultCastRegisterer<std::string>::disp(const boost::any &object,
   os << boost::any_cast<std::string>(object);
 }
 
+// for std::string, do not add std::endl at the end of the stream.
+template <>
+inline void DefaultCastRegisterer<dynamicgraph::Vector>::disp(const boost::any &object,
+                                                              std::ostream &os) {
+    os << boost::any_cast<dynamicgraph::Vector>(object).transpose();
+}
+
 /// Registers useful casts
 namespace {
 DefaultCastRegisterer<double> double_reg;
